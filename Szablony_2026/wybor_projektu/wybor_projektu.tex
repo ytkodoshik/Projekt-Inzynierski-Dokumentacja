@@ -31,8 +31,8 @@
 % Przed oddaniem: uzupełnij pola, zastąp przykłady własną treścią
 % i zmień poniższy przełącznik na \podpowiedzifalse.
 \newif\ifpodpowiedzi
-\podpowiedzitrue
-%\podpowiedzifalse
+%\podpowiedzitrue
+\podpowiedzifalse
 \newcommand{\podpowiedz}[1]{\ifpodpowiedzi\par\begingroup\small\color{hintcolor}\textit{Wskazówka: #1}\par\endgroup\fi}
 \newcommand{\pole}[1]{\textnormal{[#1]}}
 
@@ -42,19 +42,19 @@
 \newcommand{\logouczelni}{%
   \includegraphics[width=0.55\textwidth,height=40mm,keepaspectratio]{\pliklogo}%
 }
-\newcommand{\tytulprojektu}{\pole{Tytuł projektu}}
-\newcommand{\rokakademicki}{\pole{2026/2027}}
-\newcommand{\semestrprojektu}{\pole{zimowy / letni}}
-\newcommand{\datadokumentu}{\pole{dd.mm.rrrr}}
-\newcommand{\wersjadokumentu}{\pole{1.0}}
-\newcommand{\studentA}{\pole{Imię i nazwisko osoby 1}}
-\newcommand{\studentB}{\pole{Imię i nazwisko osoby 2}}
-\newcommand{\studentC}{\pole{Imię i nazwisko osoby 3}}
-\newcommand{\albumA}{\pole{numer albumu}}
-\newcommand{\albumB}{\pole{numer albumu}}
-\newcommand{\albumC}{\pole{numer albumu}}
-\newcommand{\prowadzacyA}{\pole{Stopień lub tytuł, imię i nazwisko}}
-\newcommand{\prowadzacyB}{\pole{Stopień lub tytuł, imię i nazwisko}}
+\newcommand{\tytulprojektu}{Asystent bezpieczeństwa do monitorowania i~wykrywania anomalii w~środowisku chmurowym}
+\newcommand{\rokakademicki}{2026/2027}
+\newcommand{\semestrprojektu}{zimowy}
+\newcommand{\datadokumentu}{29.10.2026}
+\newcommand{\wersjadokumentu}{1.1}
+\newcommand{\studentA}{Karolina Graf}
+\newcommand{\studentB}{Yuliia Lesyk}
+\newcommand{\studentC}{Mylana Herasymenko}
+\newcommand{\albumA}{171182}
+\newcommand{\albumB}{168814}
+\newcommand{\albumC}{168844}
+\newcommand{\prowadzacyA}{dr Beata Krzaczek}
+\newcommand{\prowadzacyB}{mgr Patryk Mazurek}
 
 \begin{document}
 \begin{titlepage}
@@ -106,29 +106,37 @@ Kraków\par
 \toprule
 Osoba / nr albumu & Kierunek / forma studiów & E-mail\\
 \midrule
-\studentA / \albumA & \pole{kierunek / forma} & \pole{adres e-mail}\\
-\studentB / \albumB & \pole{kierunek / forma} & \pole{adres e-mail}\\
-\studentC / \albumC & \pole{kierunek / forma} & \pole{adres e-mail}\\
+\studentA / \albumA & {Cyberbezpieczeństwo / stacjonarne} & {s171182@student.uken.krakow.pl}\\
+\studentB / \albumB & {Cyberbezpieczeństwo / stacjonarne} & {s168814@student.uken.krakow.pl}\\
+\studentC / \albumC & {Cyberbezpieczeństwo / stacjonarne} & {s168844@student.uken.krakow.pl}\\
 \bottomrule
 \end{tabularx}
 \newpage
 \subsection{Opis tematu i cel projektu}
 \podpowiedz{Opisz problem, odbiorców i zamierzony rezultat. Jeśli korzystasz z opisu prowadzących, dostosuj go do uzgodnionego zakresu. Wyjaśnij, na czym polega praktyczny i inżynierski charakter pracy oraz po czym będzie można poznać, że cel został osiągnięty.}
-\pole{Opis problemu, cel i przewidywany rezultat projektu.}
+{Celem projektu jest stworzenie asystenta bezpieczeństwa, który będzie współpracował z systemem do monitorowania bezpieczeństwa infrastruktury chmurowej. Jego zadaniem będzie analizowanie dużej liczby logów, czyli zapisów aktywności systemu, co pozwoli usprawnić i przyspieszyć pracę administratorów systemów oraz analityków SOC (Security Operations Center), czyli specjalistów odpowiedzialnych za monitorowanie bezpieczeństwa i wykrywanie zagrożeń.
+
+Tworzone narzędzie będzie wykorzystywać system do zbierania i analizowania informacji o~zdarzeniach związanych z bezpieczeństwem (SIEM) oraz metody uczenia maszynowego (ML), które pozwalają komputerowi rozpoznawać nietypowe zachowania na podstawie analizy danych. W~przypadku wykrycia potencjalnego zagrożenia system wygeneruje alert, czyli powiadomienie o możliwym problemie. Decyzja o sposobie reakcji na zagrożenie będzie zawsze należała do człowieka.
+
+Praktyczna część projektu będzie polegała na samodzielnym skonfigurowaniu środowiska chmurowego, wdrożeniu systemu SIEM, połączeniu go ze źródłami logów oraz przygotowaniu i przetestowaniu mechanizmów wykrywania anomalii. Skuteczność rozwiązania zostanie sprawdzona poprzez symulację wybranych ataków. Projekt będzie można uznać za zrealizowany, gdy system poprawnie wykryje określone nieprawidłowości i powiadomi o nich administratora.}
 
 
 \subsection{Założenia projektowe}
 \podpowiedz{Określ zakres możliwy do wykonania przez zespół w jednym semestrze, z uwzględnieniem jego liczebności. Oddziel wymagania podstawowe od rozszerzeń, które zostaną wykonane, jeśli pozwoli na to czas. Poniższe punkty dostosuj do charakteru projektu.}
 \begin{itemize}
-\item \textbf{Zakres i wymagania:} \pole{funkcje, scenariusze użycia lub właściwości rezultatu; elementy poza zakresem.}
-\item \textbf{Technologie i narzędzia:} \pole{języki, biblioteki, środowiska, sprzęt lub narzędzia graficzne; krótkie uzasadnienie wyboru.}
-\item \textbf{Dane i zasoby:} \pole{źródła danych i materiałów, sposób ich pozyskania oraz warunki wykorzystania.}
-\item \textbf{Weryfikacja:} \pole{planowane testy lub inne sprawdzenia; kryteria akceptacji najważniejszych rezultatów.}
-\item \textbf{Ryzyka i ograniczenia:} \pole{najważniejsze zależności, możliwe trudności i sposób ograniczenia ich wpływu.}
+\item \textbf{Zakres i wymagania:} {Podstawowe wymagania projektu obejmują skonfigurowanie środowiska chmurowego, wdrożenie systemu SIEM do zbierania i analizowania logów oraz stworzenie alertów, które będą informować o wykrytych anomaliach.~Rozszerzeniem będzie budowa prostego panelu graficznego, który umożliwi wizualizację i przeglądanie wykrytych zdarzeń. Projekt nie będzie obejmował automatycznego blokowania zagrożeń. System ma służyć jedynie do monitorowania i informowania o potencjalnych zagrożeniach, a decyzję o podjęciu odpowiednich działań będzie podejmował człowiek.}
+\item \textbf{Technologie i narzędzia:} {Python, Jupyter Notebook, Visual Studio Code, AWS EC2 oraz biblioteki NumPy i Pandas do przetwarzania i analizy danych. Wybór tych narzędzi wynika z ich szerokiego zastosowania w~analizie danych i uczeniu maszynowym oraz możliwości szybkiego prototypowania i testowania modeli w środowisku chmurowym.}
+\item \textbf{Dane i zasoby:} {Głównym źródłem danych będą logi sieciowe i dostępowe, generowane na bieżąco w naszej infrastrukturze chmurowej. Będą one automatycznie przesyłane z usług chmurowych do systemu SIEM, który umożliwi ich zbieranie i analizowanie.
+
+Do przygotowania i przetestowania modeli uczenia maszynowego , czyli metod pozwalających komputerowi rozpoznawać nietypowe zachowania, wykorzystamy publicznie dostępne zbiory danych zawierające przykłady normalnego i złośliwego ruchu sieciowego. Dane te będą pochodzić między innymi z platformy Kaggle i zostaną wykorzystane zgodnie z warunkami określonych licencji.
+
+Dodatkowo skorzystamy z ogólnodostępnych reguł wykrywania zagrożeń, np. w formacie Sigma, które pomagają rozpoznawać podejrzane zdarzenia na podstawie określonych wzorców. Reguły te będziemy pobierać z publicznych repozytoriów GitHub i wykorzystywać zgodnie z~warunkami licencji Open Source.}
+\item \textbf{Weryfikacja:} {Działanie systemu planujemy sprawdzić poprzez symulację wybranych ataków, takich jak próby odgadnięcia hasła czy skanowanie sieci. Sprawdzimy, czy system poprawnie wykrywa podejrzane zdarzenia w logach i wysyła alerty do administratora. Dodatkowo zweryfikujemy poprawność integracji z systemem SIEM oraz czas wysyłania powiadomień.}
+\item \textbf{Ryzyka i ograniczenia:} {Jednym z głównych ryzyk projektu jest generowanie fałszywych alarmów przez model uczenia maszynowego, czyli oznaczanie normalnej aktywności jako potencjalnego zagrożenia. Aby ograniczyć ten problem, planujemy odpowiednio dostroić model i wykorzystać sprawdzone reguły wykrywania zagrożeń. Trudnością może być również nieprawidłowe zbieranie lub przesyłanie logów do systemu SIEM, co mogłoby prowadzić do pominięcia niektórych zdarzeń. Ograniczymy to ryzyko poprzez regularne testowanie integracji i sprawdzanie poprawności danych. Istotną zależnością będzie także stabilne działanie wykorzystywanych narzędzi oraz dostępność bezpłatnych funkcji potrzebnych do realizacji projektu. Dodatkowym wyzwaniem mogą być opóźnienia w generowaniu alertów, dlatego planujemy mierzyć czas powiadamiania i testować działanie systemu podczas symulowanych ataków.}
 \end{itemize}
 
 \podpowiedz{Jeżeli przewidujecie wykorzystanie AI, określcie, czy ma wspomagać prace, stanowić część rozwiązania, czy pełnić obie role. Jeśli AI jest elementem wymagań projektu, wskażcie sposób oceny jej działania. Gdy nie planujecie AI, wpiszcie tę informację.}
-\textbf{Planowane wykorzystanie AI:} \pole{narzędzia lub mechanizmy, zakres zastosowania i sposób weryfikacji rezultatów.}
+\textbf{Planowane wykorzystanie AI:} {Uczenie maszynowe będzie wykorzystywane do analizy danych, wykrywania anomalii oraz identyfikacji potencjalnych zagrożeń bezpieczeństwa. Skuteczność algorytmów zostanie oceniona na podstawie trafności wykrywania anomalii. AI będzie wspomagać proces tworzenia kodu, wyszukiwania błędów oraz optymalizacji implementowanych rozwiązań.}
 
 \subsection{Wstępny harmonogram i podział zadań}
 \podpowiedz{Podziel prace na etapy z konkretnymi terminami i sprawdzalnymi rezultatami. Wskaż osoby odpowiedzialne; przy zadaniach wspólnych określ indywidualne obowiązki. Uwzględnij czas na integrację, testy, dokumentację, nagranie i poprawki. W razie potrzeby dodaj wiersze.}
@@ -136,10 +144,10 @@ Osoba / nr albumu & Kierunek / forma studiów & E-mail\\
 \toprule
 Termin & Zadania / etap & Odpowiedzialni & Rezultat\\
 \midrule
-\pole{od-do} & \pole{zadania} & \pole{osoby} & \pole{efekt do sprawdzenia}\\
-\pole{od-do} & \pole{zadania} & \pole{osoby} & \pole{efekt do sprawdzenia}\\
-\pole{od-do} & \pole{zadania} & \pole{osoby} & \pole{efekt do sprawdzenia}\\
-\pole{od-do} & \pole{zadania} & \pole{osoby} & \pole{efekt do sprawdzenia}\\
+{15.10.2026 -- 07.11.2026} & {Konfiguracja środowiska chmurowego, instalacja i~wstępna konfiguracja systemu SIEM. Pozyskanie i obróbka zbiorów danych z~Kaggle.} & {Karolina Graf \newline Yuliia Lesyk \newline \mbox{Mylana Herasymenko}} & {Działające środowisko SIEM, przygotowane dane uczące.}\\
+{08.11.2026 -- 08.12.2026} & {Implementacja skryptów Python. Trenowanie modeli uczenia maszynowego do wykrywania anomalii. Integracja reguł Sigma.} & {Karolina Graf \newline Yuliia Lesyk \newline \mbox{Mylana Herasymenko}} & {Wytrenowany model ML gotowy do testów, zaimplementowane reguły detekcji.}\\
+{09.12.2026 -- 10.01.2027} & {Budowa panelu graficznego do wizualizacji alertów. Połączenie modelu ML i~panelu z systemem SIEM.} & {Karolina Graf \newline Yuliia Lesyk \newline \mbox{Mylana Herasymenko}} & {Działający prototyp systemu z interfejsem graficznym.}\\
+{11.01.2027 -- 31.01.2027} & {Weryfikacja systemu: symulacja ataków, testy wydajności, analiza wyników . Sporządzenie dokumentacji i nagrania.} & {Karolina Graf \newline Yuliia Lesyk \newline \mbox{Mylana Herasymenko}} & {Gotowy projekt, raport końcowy, nagranie demonstracyjne.}\\
 \bottomrule
 \end{tabularx}
 \podpowiedz{Od trzeciego spotkania przygotowujcie wspólny raport za okres między poprzednim a bieżącym spotkaniem, z podziałem wykonanych prac na członków zespołu.}
@@ -150,16 +158,16 @@ Termin & Zadania / etap & Odpowiedzialni & Rezultat\\
 \podpowiedz{W projekcie programistycznym podaj adres repozytorium kodu. W projekcie o innym charakterze, np. animacji 3D, wskaż uzgodnione z prowadzącymi miejsce przechowywania plików źródłowych, zasobów i rezultatów. Opisz sposób oznaczania kolejnych wersji i zapewnij dostęp obojgu prowadzącym.}
 
 \textbf{Repozytorium lub miejsce przechowywania materiałów:}
-\pole{adres i sposób przechowywania plików.}\par
+{Kod źródłowy projektu, skrypty, konfiguracje, notatniki oraz pliki związane z implementacją będą przechowywane w publicznym repozytorium GitHub. Adres repozytorium z dokumentami: \url{https://github.com/ytkodoshik/projekt_in-ynierski}. Adres repozytorium z plikami projektu: \url{https://github.com/hakalochka/Projekt-Inzynierski} Dokumentacja i nagranie demonstracyjne będą przechowywane w uzgodnionym folderze współdzielonym. Dane dostępowe i tajne klucze konfiguracyjne nie będą umieszczane w repozytorium.}\par
 
 \textbf{Wersjonowanie:}
-\pole{system kontroli wersji lub sposób oznaczania i zachowywania kolejnych wersji plików.}\par
+{Do kontroli wersji kodu zostanie wykorzystany system Git. Główna, stabilna wersja projektu będzie przechowywana w gałęzi main, natomiast prace nad nowymi funkcjami i~poprawkami będą prowadzone w osobnych gałęziach. Istotne wersje projektu będą oznaczane tagami. Zmiany w kodzie będą opisywane w komunikatach commitów.}\par
 
 \textbf{Dostęp prowadzących:}
-\pole{sposób udostępnienia / status nadania dostępu.}\par
+{Repozytorium zostanie udostępnione prowadzącym poprzez link. Dostęp do dokumentacji i pozostałych materiałów zostanie zapewniony przez udostępnienie folderu współdzielonego. Nadanie dostępu zostanie potwierdzone po wykonaniu tej czynności.}\par
 
 \textbf{Organizacja współpracy:}
-\pole{kanał komunikacji i sposób zarządzania zadaniami.}
+{Do bieżącej komunikacji zespół będzie wykorzystywał wspólny kanał komunikacyjny w aplikacji Discord. Każdy etap będzie kończony sprawdzeniem rezultatów i~aktualizacją dokumentacji, a po integracji poszczególnych części zostaną przeprowadzone wspólne testy.}
 
 \subsection{Uzgodnione materiały końcowe}
 \podpowiedz{Uzupełnij tabelę z prowadzącymi. Sprawozdanie końcowe, kompletny projekt z plikami źródłowymi oraz nagranie są wymagane. Pozostałą dokumentację dostosujcie do projektu. Wpiszcie zakres i formę; przy dokumencie niewymaganym podajcie krótkie uzasadnienie.}
@@ -180,5 +188,24 @@ Nagranie wideo & \pole{najważniejsze funkcje lub rezultaty, które zostaną pok
 \subsection{Źródła i materiały referencyjne}
 \podpowiedz{Wskaż źródła wykorzystane przy opracowaniu koncepcji: dokumentację techniczną, publikacje, zbiory danych, zasoby i rozwiązania referencyjne. Dla stron internetowych podaj tytuł, adres i datę dostępu. Jeśli nie korzystano ze źródeł zewnętrznych, wpisz tę informację.}
 % Przykład odnośnika: \href{https://adres.example}{Tytuł dokumentacji}
-\pole{Wykaz źródeł wykorzystanych przy opracowaniu koncepcji projektu.}
+{Wazuh Documentation, How it works – Log data collection. Dokumentacja techniczna dotycząca zbierania logów, ich analizy oraz generowania alertów.\\
+\url{https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/how-it-works.html}\\
+Data dostępu: 28.10.2026.
+
+SigmaHQ, Sigma – Main Rule Repository. Publiczne repozytorium reguł wykrywania zagrożeń w formacie Sigma, wykorzystywanych do analizy zdarzeń zapisanych w logach.\\
+\url{https://github.com/SigmaHQ/sigma}\\
+Data dostępu: 28.10.2026.
+
+Canadian Institute for Cybersecurity, Intrusion Detection Evaluation Dataset (CICIDS2017). Publiczny zbiór danych zawierający przykłady normalnego ruchu sieciowego oraz ruchu związanego z wybranymi atakami, przeznaczony m.in. do badań nad wykrywaniem intruzji.\\
+\url{https://www.unb.ca/cic/datasets/ids-2017.html}\\
+Data dostępu: 28.10.2026.
+
+Pandas Development Team, Getting started. Dokumentacja biblioteki pandas dotycząca wczytywania, oczyszczania, przekształcania i analizowania danych tabelarycznych.\\
+\url{https://pandas.pydata.org/docs/getting\_started/index.html}\\
+Data dostępu: 28.10.2026.
+
+NumPy Developers, NumPy Documentation. Dokumentacja biblioteki NumPy wykorzystywanej do obliczeń numerycznych i operacji na tablicach danych w języku Python.\\
+\url{https://numpy.org/doc/stable/ }\\
+Data dostępu: 28.10.2026.
+}
 \end{document}
