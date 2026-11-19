@@ -31,8 +31,8 @@
 % Przed oddaniem: uzupełnij pola, zastąp przykłady własną treścią
 % i zmień poniższy przełącznik na \podpowiedzifalse.
 \newif\ifpodpowiedzi
-%\podpowiedzitrue
-\podpowiedzifalse
+\podpowiedzitrue
+%\podpowiedzifalse
 \newcommand{\podpowiedz}[1]{\ifpodpowiedzi\par\begingroup\small\color{hintcolor}\textit{Wskazówka: #1}\par\endgroup\fi}
 \newcommand{\pole}[1]{\textnormal{[#1]}}
 % Znacznik miejsc do sprawdzenia przez zespół - przed oddaniem wyszukaj "\dopotw" i usuń wszystkie wystąpienia.
@@ -127,11 +127,14 @@ W okresie sprawozdawczym zamknięto etap~1 harmonogramu (środowisko chmurowe i~
 \toprule
 Osoba & Zadanie & Stan & Opis\\
 \midrule
-\studentA & Pozyskanie i~wstępna analiza zbioru CICIDS2017, notatnik \texttt{prepare\_data.ipynb} \dopotw{osoba} & w toku & \ref{zadanie-a}\\
-\studentB & Dokończenie konfiguracji Wazuh i~zabezpieczenie środowiska AWS & zakończone & \ref{zadanie-b1}\\
+\studentC & Pozyskanie i~wstępna analiza zbioru CICIDS2017, notatnik \texttt{prepare\_data.ipynb} & zakończone & \ref{zadanie-a}\\
+\studentB & Konfiguracja Wazuh i~zabezpieczenie środowiska AWS & zakończone & \ref{zadanie-b1}\\
 \studentB & Wdrożenie agenta Wazuh i~test wykrywania ataku brute force & zakończone & \ref{zadanie-b2}\\
 \studentB & Repozytorium dokumentacji i~przygotowanie materiałów do raportu & zakończone & \ref{zadanie-b3}\\
-\studentC & Instalacja Wazuh, konta użytkowników Linux, dostęp SSH, środowisko VS Code i~repozytorium kodu \dopotw{osoba} & zakończone & \ref{zadanie-c}\\
+\studentC / \studentA & Instalacja Wazuh, konta użytkowników Linux, dostęp SSH, środowisko VS Code i~repozytorium kodu & zakończone & \ref{zadanie-c}\\
+\studentA & Walidacja zbiorów treningowych i testowych, notatnik \texttt{preprocess.ipynb} & zakończone & \ref{zadanie-d}\\
+\studentC & Trenowanie i zapisanie modeli RandomForest klasyfikacji binarnej \texttt{train.ipynb} & zakończone & \ref{zadanie-e}\\
+\studentA & Trenowanie i zapisanie modeli RandomForest klasyfikacji wieloklasowej \texttt{train.ipynb} & zakończone & \ref{zadanie-f}\\
 \bottomrule
 \end{tabularx}
 
@@ -139,11 +142,11 @@ Osoba & Zadanie & Stan & Opis\\
 \subsection{Opis wykonanych prac}
 \podpowiedz{Dla każdego zadania podaj cel, wykonane czynności, konkretny rezultat i sposób jego sprawdzenia. Wskaż materiały potwierdzające prace, np. pliki, commity, zgłoszenia, zrzuty ekranu lub załączniki. Przy zadaniu w toku opisz, co już wykonano i co pozostało. Jeśli dana osoba nie wykonała prac w tym okresie, wskaż to wprost i wyjaśnij przyczynę.}
 
-\subsubsection{\studentA: Pozyskanie i~wstępna analiza zbioru CICIDS2017}\label{zadanie-a}
-\dopotw{przypisanie zadania do osoby i~szczegóły wykonania}\par
-\textbf{Cel i zakres:} przygotowanie danych uczących do modeli wykrywania anomalii w~ruchu sieciowym, zgodnie z~założeniem projektu o~wykorzystaniu publicznych zbiorów danych.\par
-\textbf{Wykonane prace:} pobrano zbiór CICIDS2017 (Intrusion Detection Evaluation Dataset, Canadian Institute for Cybersecurity) za pomocą biblioteki \texttt{kagglehub}. Przygotowano notatnik \texttt{scr/prepare\_data.ipynb}, który wczytuje 8~plików CSV z~katalogu \texttt{MachineLearningCVE} (ruch z~5~dni roboczych, m.in. pliki z~atakami PortScan, DDoS, DoS i~SSH/FTP-Patator) i~łączy je w~jedną ramkę danych (rys.~\ref{fig:dane}). Wykonano wstępny przegląd struktury danych: typy kolumn, braki danych, zajętość pamięci. Do repozytorium dodano plik \texttt{requirements.txt} z~wymaganymi bibliotekami. Dane nie są przechowywane w~repozytorium ze względu na rozmiar (ponad 1~GB) i~są wykluczone w~\texttt{.gitignore}.\par
-\textbf{Rezultat i weryfikacja:} połączony zbiór zawiera 2\,830\,743 rekordy i~79~kolumn (78~cech przepływów sieciowych wygenerowanych narzędziem CICFlowMeter oraz etykieta \texttt{Label}), co zajmuje ok.~1,7~GB pamięci. Zadanie jest w~toku. Pozostało oczyszczenie danych (nazwy kolumn ze spacjami, wartości nieskończone, duplikaty, kolumny stałe), wybór klas odpowiadających planowanym symulacjom ataków (BENIGN, PortScan, SSH-Patator) oraz stratyfikowany podział na zbiór treningowy i~testowy ze skalowaniem dopasowanym wyłącznie na zbiorze treningowym.\par
+\subsubsection{\studentC: Pozyskanie i~wstępna analiza zbioru CICIDS2017}\label{zadanie-a}
+\par
+\textbf{Cel i zakres:} Przygotowanie danych uczących do modeli wykrywania anomalii w~ruchu sieciowym, zgodnie z~założeniem projektu o~wykorzystaniu publicznych zbiorów danych.\par
+\textbf{Wykonane prace:} Pobrano zbiór CICIDS2017 (Intrusion Detection Evaluation Dataset, Canadian Institute for Cybersecurity) za pomocą biblioteki \texttt{kagglehub}. Przygotowano notatnik \texttt{scr/prepare\_data.ipynb}, który wczytuje 8~plików CSV z~katalogu \texttt{MachineLearningCVE} (ruch z~5~dni roboczych, m.in. pliki z~atakami PortScan, DDoS, DoS i~SSH/FTP-Patator) i~łączy je w~jedną ramkę danych (rys.~\ref{fig:dane}). Wykonano wstępny przegląd struktury danych: typy kolumn, braki danych, zajętość pamięci. Do repozytorium dodano plik \texttt{requirements.txt} z~wymaganymi bibliotekami. Dane zostały podzielone na zbiory treningowe i testowe, które później zeskalowano i zapisano. Zbiory nie są przechowywane w~repozytorium ze względu na rozmiar (ponad 1~GB).\par
+\textbf{Rezultat i weryfikacja:} Połączony zbiór zawiera 2\,830\,743 rekordy i~79~kolumn (78~cech przepływów sieciowych wygenerowanych narzędziem CICFlowMeter oraz etykieta \texttt{Label}).\par
 \textbf{Materiały potwierdzające:} Z15, Z16; notatnik \texttt{scr/prepare\_data.ipynb} w~repozytorium kodu (gałąź \texttt{model-training}).
 
 \begin{figure}[htbp]
@@ -153,8 +156,8 @@ Osoba & Zadanie & Stan & Opis\\
 \label{fig:dane}
 \end{figure}
 
-\subsubsection{\studentB: Dokończenie konfiguracji Wazuh i~zabezpieczenie środowiska AWS}\label{zadanie-b1}
-\textbf{Cel i zakres:} zamknięcie etapu~1 harmonogramu: sprawdzenie działania systemu SIEM, dostosowanie zasobów serwera do wymagań Wazuh oraz ograniczenie dostępu do serwera z~internetu.\par
+\subsubsection{\studentB: Konfiguracja Wazuh i~zabezpieczenie środowiska AWS}\label{zadanie-b1}
+\textbf{Cel i zakres:} Konfiguracja systemu SIEM Wazuh, dostosowanie zasobów serwera do jego wymagań oraz ograniczenie dostępu do serwera z~internetu.\par
 \textbf{Wykonane prace:}
 \begin{itemize}
 \item Sprawdzono działanie trzech komponentów Wazuh 4.14.10 (manager, indexer, dashboard) poleceniem \texttt{systemctl status}. Panel Wazuh Dashboard jest dostępny przez HTTPS.
@@ -162,7 +165,7 @@ Osoba & Zadanie & Stan & Opis\\
 \item Zajętość dysku wynosiła 84\%, a~indeks Wazuh (OpenSearch) przy przekroczeniu progów zapełnienia przestaje przyjmować nowe dane. Wolumen EBS powiększono z~30 do 50~GiB bez zatrzymywania serwera; zajętość spadła do 49\%.
 \item W~grupie zabezpieczeń serwera (\texttt{launch-wizard-1}) usunięto domyślne reguły zezwalające na dostęp SSH (22) i~HTTPS (443) z~dowolnego adresu (\texttt{0.0.0.0/0}). Dostęp ograniczono do adresów IP członkiń zespołu, po jednej regule na osobę z~opisem. Porty agenta Wazuh (1514 -- przesyłanie zdarzeń, 1515 -- rejestracja) otwarto wyłącznie dla grupy zabezpieczeń instancji monitorowanej (\texttt{agent-sg}), a~nie dla adresów IP (rys.~\ref{fig:sg}).
 \end{itemize}
-\textbf{Rezultat i weryfikacja:} wszystkie usługi Wazuh mają status \textit{active (running)}, a~status managera w~panelu potwierdza działanie kluczowych procesów (\texttt{analysisd}, \texttt{remoted}, \texttt{authd}, \texttt{logcollector}). Polecenia \texttt{free -h} i~\texttt{df -h} potwierdziły dostępność 4~GB pamięci wymiany i~25~GB wolnego miejsca na dysku. Konsola AWS przestała wyświetlać ostrzeżenie o~regułach otwartych dla wszystkich adresów.\par
+\textbf{Rezultat i weryfikacja:} Wszystkie usługi Wazuh mają status \textit{active (running)}, a~status managera w~panelu potwierdza działanie kluczowych procesów (\texttt{analysisd}, \texttt{remoted}, \texttt{authd}, \texttt{logcollector}). Polecenia \texttt{free -h} i~\texttt{df -h} potwierdziły dostępność 4~GB pamięci wymiany i~25~GB wolnego miejsca na dysku. Konsola AWS przestała wyświetlać ostrzeżenie o~regułach otwartych dla wszystkich adresów.\par
 \textbf{Materiały potwierdzające:} Z01, Z02, Z03, Z04.
 
 \begin{figure}[htbp]
@@ -173,14 +176,14 @@ Osoba & Zadanie & Stan & Opis\\
 \end{figure}
 
 \subsubsection{\studentB: Wdrożenie agenta Wazuh i~test wykrywania ataku brute force}\label{zadanie-b2}
-\textbf{Cel i zakres:} podłączenie monitorowanego hosta do systemu SIEM i~sprawdzenie, czy cały łańcuch zbierania logów i~generowania alertów działa na przykładzie symulowanego ataku.\par
+\textbf{Cel i zakres:} Podłączenie monitorowanego hosta do systemu SIEM i~sprawdzenie, czy cały łańcuch zbierania logów i~generowania alertów działa na przykładzie symulowanego ataku.\par
 \textbf{Wykonane prace:}
 \begin{itemize}
 \item Uruchomiono drugą instancję EC2 \textit{Agent-ofiara} (Ubuntu Server 24.04 LTS, t3.micro) w~tej samej sieci VPC co serwer, z~osobną grupą zabezpieczeń \texttt{agent-sg} i~dostępem SSH tylko z~adresów zespołu (rys.~\ref{fig:instancje}).
 \item Zainstalowano agenta Wazuh 4.14.10 (zgodnego z~wersją managera) według kreatora \textit{Deploy new agent}. Agent łączy się z~serwerem przez prywatny adres IP w~VPC, więc ruch między nimi nie przechodzi przez publiczny internet.
 \item Przeprowadzono symulację ataku brute force: z~komputera członkini zespołu wykonano serię 10~prób logowania SSH na nieistniejące konto \texttt{hacker}.
 \end{itemize}
-\textbf{Rezultat i weryfikacja:} agent zarejestrował się pod identyfikatorem 001 i~ma status \textit{active} (rys.~\ref{fig:agent}). Po podłączeniu agenta liczba alertów w~panelu wzrosła z~58 do 343, głównie w~wyniku automatycznej oceny konfiguracji (SCA) i~monitorowania integralności plików na nowym hoście. Podczas symulacji ataku system w~ciągu kilku sekund wygenerował 20~zdarzeń: alerty reguły 5710 (poziom~5) dla pojedynczych prób logowania oraz alert reguły 5712 (poziom~10), który klasyfikuje serię prób jako atak brute force (rys.~\ref{fig:alerty}). Reguła 5712 jest uruchamiana po co najmniej 8~nieudanych próbach z~jednego adresu (\texttt{rule.frequency}). Alert został automatycznie wzbogacony o~geolokalizację adresu źródłowego oraz mapowanie na MITRE ATT\&CK: technika T1110 Brute Force, taktyka Credential Access (rys.~\ref{fig:alert5712}). Test potwierdził poprawne działanie łańcucha: zdarzenie na hoście $\rightarrow$ agent $\rightarrow$ manager $\rightarrow$ indexer $\rightarrow$ dashboard.\par
+\textbf{Rezultat i weryfikacja:} Agent zarejestrował się pod identyfikatorem 001 i~ma status \textit{active} (rys.~\ref{fig:agent}). Po podłączeniu agenta liczba alertów w~panelu wzrosła z~58 do 343, głównie w~wyniku automatycznej oceny konfiguracji (SCA) i~monitorowania integralności plików na nowym hoście. Podczas symulacji ataku system w~ciągu kilku sekund wygenerował 20~zdarzeń: alerty reguły 5710 (poziom~5) dla pojedynczych prób logowania oraz alert reguły 5712 (poziom~10), który klasyfikuje serię prób jako atak brute force (rys.~\ref{fig:alerty}). Reguła 5712 jest uruchamiana po co najmniej 8~nieudanych próbach z~jednego adresu (\texttt{rule.frequency}). Alert został automatycznie wzbogacony o~geolokalizację adresu źródłowego oraz mapowanie na MITRE ATT\&CK: technika T1110 Brute Force, taktyka Credential Access (rys.~\ref{fig:alert5712}). Test potwierdził poprawne działanie łańcucha: zdarzenie na hoście $\rightarrow$ agent $\rightarrow$ manager $\rightarrow$ indexer $\rightarrow$ dashboard.\par
 \textbf{Materiały potwierdzające:} Z05--Z14.
 
 \begin{figure}[htbp]
@@ -212,17 +215,17 @@ Osoba & Zadanie & Stan & Opis\\
 \end{figure}
 
 \subsubsection{\studentB: Repozytorium dokumentacji i~przygotowanie materiałów do raportu}\label{zadanie-b3}
-\dopotw{czy repozytorium dokumentacji powstało w~tym okresie}\par
-\textbf{Cel i zakres:} zgromadzenie materiałów potwierdzających wykonane prace w~sposób bezpieczny do publikacji w~publicznym repozytorium.\par
-\textbf{Wykonane prace:} przygotowano zrzuty ekranu dokumentujące konfigurację środowiska i~wyniki testów. Na zrzutach zamazano publiczne adresy IP instancji, domowe adresy IP członkiń zespołu, identyfikator konta AWS i~współrzędne geolokalizacji. Materiały umieszczono w~repozytorium dokumentacji (\texttt{raporty/raport1/zalaczniki/}).\par
+\par
+\textbf{Cel i zakres:} Zgromadzenie materiałów potwierdzających wykonane prace w~sposób bezpieczny do publikacji w~publicznym repozytorium.\par
+\textbf{Wykonane prace:} Przygotowano zrzuty ekranu dokumentujące konfigurację środowiska i~wyniki testów. Na zrzutach zamazano publiczne adresy IP instancji, domowe adresy IP członkiń zespołu, identyfikator konta AWS i~współrzędne geolokalizacji. Materiały umieszczono w~repozytorium dokumentacji (\texttt{raporty/raport1/zalaczniki/}).\par
 \textbf{Rezultat i weryfikacja:} 17~opisanych załączników (Z01--Z16) w~repozytorium dokumentacji. Każdy zrzut przejrzano pod kątem danych wrażliwych przed publikacją.\par
 \textbf{Materiały potwierdzające:} \url{\zalaczniki}.
 
 \subsubsection{\studentC: Instalacja Wazuh, konta użytkowników i~środowisko pracy}\label{zadanie-c}
 \dopotw{przypisanie zadania do osoby, daty wykonania i~szczegóły}\par
-\textbf{Cel i zakres:} przygotowanie wspólnego środowiska pracy zespołu na serwerze chmurowym i~lokalnie.\par
-\textbf{Wykonane prace:} zainstalowano Wazuh w~wariancie \textit{all-in-one} (manager, indexer i~dashboard na jednej instancji). Skonfigurowano dostęp do serwera przez SSH z~uwierzytelnianiem kluczem. Utworzono osobne konta użytkowników systemu Linux dla każdej członkini zespołu, co zapewnia rozliczalność działań i~pozwala nie współdzielić konta \texttt{ubuntu}. Środowisko pracy z~kodem zmieniono z~Google Colab na Visual Studio Code. Utworzono repozytorium kodu z~katalogiem \texttt{scr/}, w~którym przygotowano szkielet notatników (\texttt{download\_dataset}, \texttt{prepare\_data}, \texttt{preprocess}, \texttt{train}, \texttt{evaluate}), oraz gałąź roboczą \texttt{model-training}.\par
-\textbf{Rezultat i weryfikacja:} wszystkie członkinie zespołu mogą zalogować się na serwer na własne konta. Panel Wazuh był dostępny przed dalszą konfiguracją opisaną w~pkt~\ref{zadanie-b1}.\par
+\textbf{Cel i zakres:} Przygotowanie wspólnego środowiska pracy zespołu na serwerze chmurowym i~lokalnie.\par
+\textbf{Wykonane prace:} Zainstalowano Wazuh w~wariancie \textit{all-in-one} (manager, indexer i~dashboard na jednej instancji). Skonfigurowano dostęp do serwera przez SSH z~uwierzytelnianiem kluczem. Utworzono osobne konta użytkowników systemu Linux dla każdej członkini zespołu, co zapewnia rozliczalność działań i~pozwala nie współdzielić konta \texttt{ubuntu}. Środowisko pracy z~kodem zmieniono z~Google Colab na Visual Studio Code. Utworzono repozytorium kodu z~katalogiem \texttt{scr/}, w~którym przygotowano szkielet notatników (\texttt{download\_dataset}, \texttt{prepare\_data}, \texttt{preprocess}, \texttt{train}, \texttt{evaluate}), oraz gałąź roboczą \texttt{model-training}.\par
+\textbf{Rezultat i weryfikacja:} Wszystkie członkinie zespołu mogą zalogować się na serwer na własne konta. Panel Wazuh był dostępny przed dalszą konfiguracją opisaną w~pkt~\ref{zadanie-b1}.\par
 \textbf{Materiały potwierdzające:} Z04, Z05; repozytorium kodu \url{\repokod}.
 
 \subsection{Problemy i zmiany w planie}
@@ -253,7 +256,7 @@ Aktualizacja dokumentacji projektu (technologie, sekcja materiałów końcowych,
 
 \subsection{Wykorzystanie AI i materiałów zewnętrznych}
 \podpowiedz{Jeżeli AI miała istotny wpływ na prace z tego okresu, wskaż narzędzie, zadania, zakres zastosowania oraz sposób weryfikacji wyników. Rozróżnij wsparcie prac od rozwijania funkcji AI będących częścią projektu. Nie dołączaj pełnej historii rozmów ani wszystkich promptów. Możesz odwołać się do opisów zadań zamiast powtarzać informacje. Gdy nie korzystano z AI, wpisz tę informację.}
-\textbf{AI:} w~zadaniach opisanych w~pkt~\ref{zadanie-b1}--\ref{zadanie-b3} korzystano z~asystenta Claude (Anthropic) jako wsparcia prac. Asystent pomagał w~rozpisaniu kolejnych kroków konfiguracji AWS i~Wazuh (grupy zabezpieczeń, pamięć wymiany, powiększenie dysku, instalacja agenta, scenariusz testu brute force), w~diagnozie błędów środowiska Python w~notatniku, w~propozycji kodu do czyszczenia i~podziału danych oraz w~zamazaniu danych wrażliwych na zrzutach ekranu. Każdy krok weryfikowano: sprawdzano status usług, wynik poleceń systemowych i~widok w~konsoli AWS, a~poprawność całej konfiguracji potwierdził test wykrywania ataku. Funkcje AI będące częścią projektu (modele ML wykrywające anomalie) nie zostały jeszcze zaimplementowane. \dopotw{czy pozostałe osoby korzystały z~innych narzędzi AI}\par
+\textbf{AI:} W~zadaniach opisanych w~pkt~\ref{zadanie-b1}--\ref{zadanie-b3} korzystano z~asystenta Claude (Anthropic) jako wsparcia prac. Asystent pomagał w~rozpisaniu kolejnych kroków konfiguracji AWS i~Wazuh (grupy zabezpieczeń, pamięć wymiany, powiększenie dysku, instalacja agenta, scenariusz testu brute force), w~diagnozie błędów środowiska Python w~notatniku, w~propozycji kodu do czyszczenia i~podziału danych oraz w~zamazaniu danych wrażliwych na zrzutach ekranu. Każdy krok weryfikowano: sprawdzano status usług, wynik poleceń systemowych i~widok w~konsoli AWS, a~poprawność całej konfiguracji potwierdził test wykrywania ataku. Funkcje AI będące częścią projektu (modele ML wykrywające anomalie) nie zostały jeszcze zaimplementowane. \dopotw{czy pozostałe osoby korzystały z~innych narzędzi AI}\par
 \podpowiedz{Wskaż nowe źródła, biblioteki, modele, dane, zasoby lub cudze fragmenty kodu wykorzystane w tym okresie oraz ich pochodzenie i warunki wykorzystania. W razie potrzeby dodaj wykaz źródeł z odnośnikami.}
 \textbf{Materiały zewnętrzne:}
 \begin{itemize}
@@ -295,6 +298,7 @@ Z13 & \texttt{Z13\_alert\_5712\_szczegoly.png} & Szczegóły alertu 5712 i~korel
 Z14 & \texttt{Z14\_alert\_5712\_mitre.png} & Mapowanie alertu na MITRE ATT\&CK (T1110), pkt~\ref{zadanie-b2}\\
 Z15 & \texttt{Z15\_cicids\_wczytanie\_plikow.png} & Lista 8~plików CSV zbioru CICIDS2017, pkt~\ref{zadanie-a}\\
 Z16 & \texttt{Z16\_cicids\_struktura\_danych.png} & Struktura wczytanego zbioru (2\,830\,743 rekordy, 79 kolumn), pkt~\ref{zadanie-a}\\
+Z17 & \texttt{Z17\_obrobione\_dane.png} & Zapisane podzielone zbiory treningowe i testowe. pkt~\ref{zadanie-a}\\
 \bottomrule
 \end{tabularx}
 \end{document}
